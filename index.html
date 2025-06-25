@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agrisens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #43cea2;
+      --secondary: #185a9d;
+      --bg-light: #f5f5f5;
+      --bg-gradient: linear-gradient(135deg, #e8f5e9 0%, #f5f5f5 100%);
+      --card-bg: #fff;
+      --shadow: 0 4px 24px rgba(67,206,162,0.10);
+      --radius: 20px;
+      --transition: 0.25s cubic-bezier(.4,0,.2,1);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg-gradient);
+      margin: 0;
+      padding: 0;
+      color: #222;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 48px 20px 36px 20px;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 8px;
+      background: linear-gradient(90deg, #fff2 0%, #fff0 100%);
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 3.2rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 2px 12px #185a9d44;
+    }
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      margin: -28px auto 36px auto;
+      max-width: 900px;
+      box-shadow: var(--shadow);
+      padding: 14px 0;
+      position: relative;
+      z-index: 2;
+      overflow-x: auto;
+    }
+    nav a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.08rem;
+      padding: 10px 22px;
+      border-radius: 12px;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      position: relative;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+    }
+    nav a:hover, nav a:focus {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 12px #43cea233;
+      outline: none;
+    }
+    main {
+      max-width: 950px;
+      margin: auto;
+      padding: 36px 20px 48px 20px;
+    }
+    section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 36px;
+      padding: 36px 30px 30px 30px;
+      transition: box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    section:hover {
+      box-shadow: 0 8px 32px #185a9d22;
+      transform: translateY(-2px) scale(1.01);
+    }
+    h2 {
+      color: var(--secondary);
+      margin-top: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      margin-top: 28px;
+      font-size: 1.18rem;
+      font-weight: 700;
+    }
+    ul {
+      padding-left: 26px;
+      margin-bottom: 0;
+    }
+    ul li {
+      margin-bottom: 7px;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 18px;
+      background: #f9f9f9;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px #43cea21a;
+      font-size: 1.04rem;
+    }
+    th, td {
+      padding: 13px 12px;
+      text-align: left;
+    }
+    th {
+      background: #e3f2fd;
+      color: var(--secondary);
+      font-weight: 700;
+      border-bottom: 2px solid var(--primary);
+      letter-spacing: 0.5px;
+    }
+    tr:not(:last-child) td {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    tr:nth-child(even) td {
+      background: #f5fafd;
+    }
+    p, li {
+      font-size: 1.08rem;
+    }
+    footer {
+      text-align: center;
+      padding: 22px 10px 18px 10px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin-top: 48px;
+      font-size: 1.08rem;
+      letter-spacing: 1px;
+      box-shadow: 0 -2px 16px #43cea211;
+      font-weight: 500;
+    }
+    /* Botón "Volver arriba" */
+    #btn-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      box-shadow: 0 4px 24px #185a9d33;
+      cursor: pointer;
+      font-size: 2.2rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      outline: none;
+    }
+    #btn-top:focus, #btn-top:hover {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      box-shadow: 0 8px 32px #185a9d44;
+      transform: scale(1.08);
+    }
+    #btn-top svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+    /* Animación de entrada para las secciones */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.7s forwards;
+    }
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        max-width: 99vw;
+        padding: 10px;
+      }
+      nav {
+        max-width: 99vw;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 0;
+      }
+      section {
+        padding: 18px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.1rem;
+      }
+      nav a {
+        font-size: 0.98rem;
+        padding: 8px 10px;
+      }
+      #btn-top {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.jpeg" alt="Logo Agrisens" style="width:90px; height:90px; object-fit:contain; border-radius:18px; margin-bottom:12px; box-shadow:0 2px 12px #185a9d33;">
+  <h1>Agrisens</h1>
+  <p>Tecnología para el campo al alcance de todos</p>
+</header>
+
+<nav>
+  <a href="#quienes-somos">Quiénes Somos</a>
+  <a href="#mision-vision">Misión y Visión</a>
+  <a href="#informacion">Información</a>
+  <a href="#valores">Valores</a>
+  <a href="#convenios">Convenios</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<main>
+
+<section id="quienes-somos">
+  <h2>¿Quiénes somos?</h2>
+  <p>En Agrisens, creemos que la tecnología debe estar al alcance de todos los agricultores, sin importar el tamaño de su predio...</p>
+</section>
+
+<section id="mision-vision">
+  <h2>Misión</h2>
+  <p>Acercar la tecnología de monitoreo de humedad de suelo a pequeños y medianos agricultores...</p>
+  <h2>Visión</h2>
+  <p>Ser referentes en la democratización de tecnologías agrícolas en Chile y Latinoamérica...</p>
+</section>
+
+<section id="informacion">
+  <h2>¿Qué son los sensores de humedad de suelo?</h2>
+  <p>Los sensores de humedad de suelo son dispositivos que miden cuánta agua hay disponible en el suelo...</p>
+
+  <h3>Tipos de sensores que ofrecemos</h3>
+  <ul>
+    <li><strong>Sensores capacitivos:</strong> Económicos, precisos, ideales para hortalizas y frutales.</li>
+    <li><strong>Sensores tensiométricos digitales:</strong> Miden la tensión del agua en el suelo, útiles en suelos arcillosos.</li>
+  </ul>
+
+  <h3>¿Cómo puedo probar los sensores?</h3>
+  <p>Ofrecemos arriendo con derecho a compra por 3 a 6 meses, incluye instalación y capacitación básica.</p>
+</section>
+
+<section id="valores">
+  <h2>Valores</h2>
+  <h3>Arriendo</h3>
+  <table>
+    <tr><th>Plan</th><th>Cant. Sensores</th><th>Tipo</th><th>3 meses</th><th>6 meses</th></tr>
+    <tr><td>Básico</td><td>3</td><td>Capacitivo</td><td>$25.000</td><td>$20.000</td></tr>
+    <tr><td></td><td></td><td>Tensiométrico</td><td>$32.000</td><td>$27.000</td></tr>
+    <tr><td>Intermedio</td><td>6</td><td>Capacitivo</td><td>$23.000</td><td>$18.000</td></tr>
+    <tr><td></td><td></td><td>Tensiométrico</td><td>$30.000</td><td>$25.000</td></tr>
+    <tr><td>Avanzado</td><td>10</td><td>Capacitivo</td><td>$20.000</td><td>$16.000</td></tr>
+    <tr><td></td><td></td><td>Tensiométrico</td><td>$27.000</td><td>$22.000</td></tr>
+  </table>
+
+  <h3>Compra</h3>
+  <table>
+    <tr><th>Tipo de Sensor</th><th>Precio Unitario</th><th>Precio con descuento</th></tr>
+    <tr><td>Capacitivo</td><td>$180.000</td><td>Desde $120.000*</td></tr>
+    <tr><td>Tensiométrico</td><td>$250.000</td><td>Desde $180.000*</td></tr>
+  </table>
+  <p>* Descuento depende del tiempo de arriendo y cantidad de sensores.</p>
+</section>
+
+<section id="convenios">
+  <h2>Convenios</h2>
+  <h3>Prodesal</h3>
+  <p>Descuentos especiales, coordinación con técnicos y apoyo en postulaciones.</p>
+
+  <h3>INDAP</h3>
+  <p>Compatible con programas PRI e IFP. Apoyo en postulaciones y uso de incentivos para la compra.</p>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p><strong>Correo:</strong> contacto@agrisens.cl</p>
+  <p><strong>Teléfono:</strong> +56 9 1234 5678</p>
+  <p><strong>Mensaje directo:</strong> Escríbenos en nuestras redes sociales o formulario web.</p>
+</section>
+
+</main>
+
+<footer style="text-align:center; padding:10px; background:#ddd;">
+  &copy; 2025 Agrisens. Todos los derechos reservados.
+</footer>
+
+<button id="btn-top" title="Volver arriba" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="12" fill="none"/>
+    <path d="M12 17V7M12 7L7 12M12 7l5 5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<script>
+  // Mostrar el botón cuando se hace scroll hacia abajo
+  const btnTop = document.getElementById('btn-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      btnTop.style.display = 'flex';
+    } else {
+      btnTop.style.display = 'none';
+    }
+  });
+  // Volver arriba suavemente al hacer clic
+  btnTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
